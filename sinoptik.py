@@ -138,5 +138,3 @@ def send_echo(message):
     
 
 bot.polling(none_stop=True)
-
-
