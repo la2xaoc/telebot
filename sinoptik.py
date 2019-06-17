@@ -11,8 +11,10 @@ def send_echo(message):
     b=bs4.BeautifulSoup(s.text, "html.parser")
 
     p3=b.select('#bd1c .temperature .p3')
+    p3_1=b.select('.p3 .d300')
 
     pogoda1=p3[0].getText()
+    pogoda1_1=p3_1[0].getText()
 
     p4=b.select('.temperature .p4')
 
@@ -45,7 +47,7 @@ def send_echo(message):
 
     answer1 = daylink1 + ' ' + date1 + ' ' + month1
 
-    answer2 = 'Утром :' + pogoda1 + ' ' + pogoda2
+    answer2 = 'Утром :' + pogoda1 + pogoda1_1 + ' ' + pogoda2
 
     answer3 = 'Днём :' + pogoda3 + ' ' + pogoda4
 
