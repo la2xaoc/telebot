@@ -54,16 +54,16 @@ def send_echo(message):
     p=b.select('.rSide .description')
 
     p=b.select('.rSide .ico-stormWarning-1')
-	pico=b.select('.rSide .ico-stormWarning-3')
-	pw=b.select('.wDescription')
+    pico=b.select('.rSide .ico-stormWarning-3')
+    pw=b.select('.wDescription')
 
-	pogoda=p[0].getText()
-	pogodaico=pico[0].getText()
-	pogodaw=pw[0].getText()
+    pogoda=p[0].getText()
+    pogodaico=pico[0].getText()
+    pogodaw=pw[0].getText()
 
     answer5 = pogoda.strip()
-    answer5_1 = pogoda.strip()
-    answer5_2 = pogoda.strip()
+    answer5_1 = pogodaico.strip()
+    answer5_2 = pogodaw.strip()
     answer0 = "\n\n"
 
     now = datetime.datetime.now()
