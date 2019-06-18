@@ -11,10 +11,8 @@ def send_echo(message):
     b=bs4.BeautifulSoup(s.text, "html.parser")
 
     p3=b.select('#bd1c .temperature .p3')
-    p3_1=b.select('.p3 .d300')
 
     pogoda1=p3[0].getText()
-    pogoda1_1=p3_1[0].getText()
 
     p4=b.select('.temperature .p4')
 
@@ -45,28 +43,45 @@ def send_echo(message):
     daylink=b.select('#bd1 .day-link')
     daylink1=daylink[0].getText()
 
-    answer1 = daylink1 + ' ' + date1 + ' ' + month1
+    answer = daylink1 + ' ' + date1 + ' ' + month1 + "\n\n"
 
-    answer2 = 'Утром :' + pogoda1 + pogoda1_1 + ' ' + pogoda2
+    answer += 'Утром :' + pogoda1 + ' ' + pogoda2 + "\n"
 
-    answer3 = 'Днём :' + pogoda3 + ' ' + pogoda4
+    answer += 'Днём :' + pogoda3 + ' ' + pogoda4 + "\n"
 
-    answer4 = 'Вечер :' + pogoda5 + ' ' + pogoda6
+    answer += 'Вечер :' + pogoda5 + ' ' + pogoda6 + "\n"
 
-    p=b.select('.rSide .description')
 
-    p=b.select('.rSide .ico-stormWarning-1')
-    pico=b.select('.rSide .ico-stormWarning-3')
-    pw=b.select('.wDescription')
+    pico1=b.select('.rSide .ico-stormWarning-1') # предупреждение град, гроза, пожарность
+    pico3=b.select('.rSide .ico-stormWarning-3') #ветер
+    pw=b.select('.wDescription') #прогноз погоды описание
+    p=b.select('.oDescription .rSide .description') #Народный прогноз погоды
+    answer5 = "Тут может быть ваша реклама. Контакт: @Arganaft\n\n"
 
-    pogoda=p[0].getText()
-    pogodaico=pico[0].getText()
-    pogodaw=pw[0].getText()
+    if(pico1): # предупреждение град, гроза, пожарность
+        pogoda=pico1[0].getText()
+        answer5 += pogoda.strip() + "\n\n"
+    else:
+        answer5 += ""
 
-    answer5 = pogoda.strip()
-    answer5_1 = pogodaico.strip()
-    answer5_2 = pogodaw.strip()
-    answer0 = "\n\n"
+    if(pico3): #ветер
+        pogoda=pico3[0].getText()
+        answer5 += pogoda.strip() + "\n\n"
+    else:
+        answer5 += ""
+        
+    if(pw): #прогноз погоды описание
+        pogoda=pw[0].getText()
+        answer5 += pogoda.strip() + "\n\n"
+    else:
+        answer5 += ""
+
+    if(p): #Народный прогноз погоды
+        pogoda=p[0].getText()
+        answer5 += pogoda.strip()
+    else:
+        answer5 += ""
+        
 
     now = datetime.datetime.now()
 
@@ -81,7 +96,7 @@ def send_echo(message):
         
     datapogoda=(year0+'-'+month0+'-'+day0)
 
-    s1=requests.get('https://sinoptik.com.ru/погода-луцк/'+datapogoda)
+    s1=requests.get('https://sinoptik.com.ru/погода-луцк/'+datapogoda) #следущий день
 
     b=bs4.BeautifulSoup(s1.text, "html.parser")
 
@@ -118,13 +133,13 @@ def send_echo(message):
     daylink=b.select('#bd2 .day-link')
     daylink1=daylink[0].getText()
 
-    answer6 = daylink1 + ' ' + date1 + ' ' + month1
+    answer2 = daylink1 + ' ' + date1 + ' ' + month1 + "\n\n"
     
-    answer7 = 'Утром :' + pogoda3 + ' ' + pogoda4
+    answer2 += 'Утром :' + pogoda3 + ' ' + pogoda4 + "\n"
 
-    answer8 = 'Днём :' + pogoda5 + ' ' + pogoda6
+    answer2 += 'Днём :' + pogoda5 + ' ' + pogoda6 + "\n"
 
-    answer9 = 'Вечер :' + pogoda7 + ' ' + pogoda8
+    answer2 += 'Вечер :' + pogoda7 + ' ' + pogoda8 + "\n"
 
     p=b.select('.rSide .description')
 
@@ -132,23 +147,13 @@ def send_echo(message):
 
     answer10 = pogoda.strip()
     
-    bot.send_message(message.chat.id, answer1)
-    bot.send_message(message.chat.id, answer2)
-    bot.send_message(message.chat.id, answer3)
-    bot.send_message(message.chat.id, answer4)
+    bot.send_message(message.chat.id, answer)
     bot.send_message(message.chat.id, answer5)
-    bot.send_message(message.chat.id, answer5_1)
-    bot.send_message(message.chat.id, answer5_2)
     bot.send_message(message.chat.id, '==================================================================================================================')
-    bot.send_message(message.chat.id, answer6)
-    bot.send_message(message.chat.id, answer7)
-    bot.send_message(message.chat.id, answer8)
-    bot.send_message(message.chat.id, answer9)
+    bot.send_message(message.chat.id, answer2)
     bot.send_message(message.chat.id, answer10)
     
 
     
 
 bot.polling(none_stop=True)
-
-
