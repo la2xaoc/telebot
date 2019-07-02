@@ -1,8 +1,6 @@
 import telebot
-from telebot  import  types
-import requests, bs4
-import datetime
-import lutsk
+from telebot import types
+from lutsk import lutsk
 
 bot = telebot.TeleBot("842277315:AAGYaZV9kRdrvGUdpVLmONUaT-qUYyJvB5o")
 
@@ -18,12 +16,12 @@ def send_welcom(message):
     bot.send_message(message.chat.id, "Привет, я бот прогноза погоды", reply_markup=markup_menu)
 
 @bot.message_handler(func=lambda message: True)
-def echo_all(message):
+def send_text(message):
     if message.text == "Погода на сегодня":
-        bot.send_message(message.chat.id, lutsk.answer, reply_markup=markup_menu)
+        bot.send_message(message.chat.id, lutsk.answer)
     elif message.text == "Погода на завтра":
-        bot.send_message(message.chat.id, lutsk.answer2, reply_markup=markup_menu)
-        bot.send_message(message.chat.id, lutsk.answer10, reply_markup=markup_menu)
+        bot.send_message(message.chat.id, lutsk.answer2)
+        bot.send_message(message.chat.id, lutsk.answer10)
 
 
 
@@ -36,4 +34,3 @@ def echo_all(message):
 
 if __name__ == '__main__':
     bot.polling(none_stop=True)
-
