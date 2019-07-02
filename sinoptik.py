@@ -34,4 +34,6 @@ def echo_all(message):
 #bot.send_message(message.chat.id, answer2)
 #bot.send_message(message.chat.id, answer10)
 
-bot.polling(none_stop=True)
+if __name__ == '__main__':
+    bot.polling(none_stop=True)
+
