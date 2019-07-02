@@ -95,6 +95,10 @@ def send_text(message):
         else:
             answer += ""
 
+
+        bot.send_message(message.chat.id, answer)
+
+    elif message.text == "Погода на завтра":
         now = datetime.datetime.now()
 
         year0 = str(now.year)
@@ -107,8 +111,6 @@ def send_text(message):
             day0 = ('0' + day0)
 
         datapogoda = (year0 + '-' + month0 + '-' + day0)
-        bot.send_message(message.chat.id, answer)
-    elif message.text == "Погода на завтра":
         s1 = requests.get('https://sinoptik.com.ru/погода-луцк/' + datapogoda)  # следущий день
 
         b = bs4.BeautifulSoup(s1.text, "html.parser")
