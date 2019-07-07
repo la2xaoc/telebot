@@ -107,7 +107,7 @@ def send_text(message):
             month0 = str(now.month)
             month0 = ('0' + month0)
         if (now.day <= 9):
-            day0 = str(now.day)
+            day0 = str(now.day+1)
             day0 = ('0' + day0)
 
         datapogoda = (year0 + '-' + month0 + '-' + day0)
