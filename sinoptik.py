@@ -106,9 +106,11 @@ def send_text(message):
         if (now.month <= 9):
             month0 = str(now.month)
             month0 = ('0' + month0)
-        if (now.day <= 9):
+        if (now.day+1 <= 9):
             day0 = str(now.day+1)
             day0 = ('0' + day0)
+        elif (now.day+1 <= 10):
+            day0 = str(now.day+1)
 
         datapogoda = (year0 + '-' + month0 + '-' + day0)
         s1 = requests.get('https://sinoptik.com.ru/погода-луцк/' + datapogoda)  # следущий день
@@ -165,14 +167,10 @@ def send_text(message):
         bot.send_message(message.chat.id, answer2)
         bot.send_message(message.chat.id, answer10)
 
-
-
-
-
-#bot.send_message(message.chat.id, answer)
-#bot.send_message(message.chat.id,'==================================================================================================================')
-#bot.send_message(message.chat.id, answer2)
-#bot.send_message(message.chat.id, answer10)
-
+    # bot.send_message(message.chat.id, answer)
+    # bot.send_message(message.chat.id,'==================================================================================================================')
+    # bot.send_message(message.chat.id, answer2)
+    # bot.send_message(message.chat.id, answer10)
+    
 if __name__ == '__main__':
     bot.polling(none_stop=True)
