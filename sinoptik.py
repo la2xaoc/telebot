@@ -101,14 +101,14 @@ def send_text(message):
     elif message.text == "Погода на завтра":
         now = datetime.datetime.now()
 
-        year0 = str(now.year)
-        day0 = str(now.day)
+        #year0 = str(now.year)
+        #day0 = str(now.day)
         if (now.month <= 9):
             month0 = str(now.month)
             month0 = ('0' + month0)
         if (now.day <= 9):
-            day0 = str(now.day)
-            day0 = ('0' + day0 + 1)
+            day0 = str(now.day+1)
+            day0 = ('0' + day0)
 
         datapogoda = (year0 + '-' + month0 + '-' + day0)
         s1 = requests.get('https://sinoptik.com.ru/погода-луцк/' + datapogoda)  # следущий день
