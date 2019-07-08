@@ -101,8 +101,8 @@ def send_text(message):
     elif message.text == "Погода на завтра":
         now = datetime.datetime.now()
 
-        #year0 = str(now.year)
-        #day0 = str(now.day)
+        year0 = 0
+        day0 = 0
         if (now.month <= 9):
             month0 = str(now.month)
             month0 = ('0' + month0)
