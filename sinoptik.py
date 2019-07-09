@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 import requests, bs4
 import datetime
-
+from datetime import datetime, timedelta
 
 bot = telebot.TeleBot("842277315:AAGYaZV9kRdrvGUdpVLmONUaT-qUYyJvB5o")
 
@@ -99,20 +99,11 @@ def send_text(message):
         bot.send_message(message.chat.id, answer)
 
     elif message.text == "Погода на завтра":
-        now = datetime.datetime.now()
-
-        year0 = str(now.year)
-        day0 = str(now.day)
-        if (now.month <= 9):
-            month0 = str(now.month)
-            month0 = ('0' + month0)
-        if (now.day+1 <= 9):
-            day0 = str(now.day+1)
-            day0 = ('0' + day0)
-        elif (10 < now.day+1):
-            day0 = str(now.day+1)
-
-        datapogoda = (year0 + '-' + month0 + '-' + day0)
+        ow = datetime.now() 
+        one_days = timedelta(1) # плюсует следущий день
+        in_two_days = now + one_days
+        datapogoda = in_two_days.strftime("%Y-%m-%d") #.strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
+        
         s1 = requests.get('https://sinoptik.com.ru/погода-луцк/' + datapogoda)  # следущий день
 
         b = bs4.BeautifulSoup(s1.text, "html.parser")
