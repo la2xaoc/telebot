@@ -99,7 +99,7 @@ def send_text(message):
         bot.send_message(message.chat.id, answer)
 
     elif message.text == "Погода на завтра":
-        ow = datetime.now() 
+        now = datetime.now() 
         one_days = timedelta(1) # плюсует следущий день
         in_two_days = now + one_days
         datapogoda = in_two_days.strftime("%Y-%m-%d") #.strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
