@@ -148,7 +148,7 @@ def send_text(message):
 
         answer2 += 'Днём :' + pogoda5 + ' ' + pogoda6 + "\n"
 
-        answer2 += 'Вечер :' + pogoda7 + ' ' + pogoda8 + "\n"
+        answer2 += 'Вечер :' + pogoda7 + ' ' + pogoda8 + "\n\n"
 
         p = b.select('.rSide .description')
 
