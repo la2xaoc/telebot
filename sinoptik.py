@@ -153,10 +153,10 @@ def send_text(message):
 
         pogoda = p[0].getText()
 
-        answer10 = pogoda.strip()
+        answer2 += pogoda.strip()
 
         bot.send_message(message.chat.id, answer2)
-        bot.send_message(message.chat.id, answer10)
+        #bot.send_message(message.chat.id, answer10)
 
     # bot.send_message(message.chat.id, answer)
     # bot.send_message(message.chat.id,'==================================================================================================================')
