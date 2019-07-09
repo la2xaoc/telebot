@@ -101,7 +101,7 @@ def send_text(message):
         now = datetime.now()
         one_days = timedelta(1) # плюсует следущий день
         in_two_days = now + one_days
-        datapogoda = in_two_days.strftime("%Y-%m-%d") # .strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
+        datapogoda = in_two_days.strftime("%Y-%m-%d %I:%M") # .strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
         bot.send_message(message.chat.id, datapogoda)
         s1 = requests.get('https://sinoptik.com.ru/погода-луцк/' + datapogoda)  # следущий день
 
