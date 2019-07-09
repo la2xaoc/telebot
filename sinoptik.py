@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 
 bot = telebot.TeleBot("842277315:AAGYaZV9kRdrvGUdpVLmONUaT-qUYyJvB5o")
 
-
 markup_menu = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
 btn_pogoda1 = types.KeyboardButton('Погода на сегодня')
 btn_pogoda2 = types.KeyboardButton('Погода на завтра')
@@ -16,6 +15,7 @@ markup_menu.add(btn_pogoda1, btn_pogoda2)
 @bot.message_handler(commands=['start'])
 def send_welcom(message):
     bot.send_message(message.chat.id, "Привет, я бот прогноза погоды", reply_markup=markup_menu)
+
 
 @bot.message_handler(func=lambda message: True)
 def send_text(message):
@@ -95,15 +95,14 @@ def send_text(message):
         else:
             answer += ""
 
-
         bot.send_message(message.chat.id, answer)
 
     elif message.text == "Погода на завтра":
-        now = datetime.now() 
+        now = datetime.now()
         one_days = timedelta(1) # плюсует следущий день
         in_two_days = now + one_days
-        datapogoda = in_two_days.strftime("%Y-%m-%d") #.strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
-        bot.send_message(message.chat.id, datapogoda)
+        datapogoda = in_two_days.strftime("%Y-%m-%d") # .strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
+
         s1 = requests.get('https://sinoptik.com.ru/погода-луцк/' + datapogoda)  # следущий день
 
         b = bs4.BeautifulSoup(s1.text, "html.parser")
@@ -147,7 +146,7 @@ def send_text(message):
 
         answer2 += 'Днём :' + pogoda5 + ' ' + pogoda6 + "\n"
 
-        answer2 += 'Вечер :' + pogoda7 + ' ' + pogoda8 + "\n\n"
+        answer2 += 'Вечер :' + pogoda7 + ' ' + pogoda8 + "\n"
 
         p = b.select('.rSide .description')
 
@@ -156,12 +155,12 @@ def send_text(message):
         answer2 += pogoda.strip()
 
         bot.send_message(message.chat.id, answer2)
-        #bot.send_message(message.chat.id, answer10)
 
     # bot.send_message(message.chat.id, answer)
     # bot.send_message(message.chat.id,'==================================================================================================================')
     # bot.send_message(message.chat.id, answer2)
     # bot.send_message(message.chat.id, answer10)
-    
+
+
 if __name__ == '__main__':
     bot.polling(none_stop=True)
