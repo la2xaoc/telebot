@@ -99,6 +99,8 @@ def send_text(message):
 
     elif message.text == "Погода на завтра":
         now = datetime.now()
+        now = now + timedelta(hours=4)
+        
         one_days = timedelta(1) # плюсует следущий день
         in_two_days = now + one_days
         datapogoda = in_two_days.strftime("%Y-%m-%d %I:%M") # .strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
