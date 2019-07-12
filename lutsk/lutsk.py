@@ -134,3 +134,4 @@ p = b.select('.rSide .description')
 pogoda = p[0].getText()
 
 answer2 += pogoda.strip()
+
