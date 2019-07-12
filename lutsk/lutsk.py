@@ -1,5 +1,5 @@
 import requests, bs4
-import datetime
+from datetime import datetime, timedelta
 
 s = requests.get('https://sinoptik.com.ru/погода-луцк')
 
@@ -76,19 +76,14 @@ if (p):  # Народный прогноз погоды
 else:
     answer += ""
 
-now = datetime.datetime.now()
+now = datetime.now()
+now = now + timedelta(hours=3)
 
-year0 = str(now.year)
-day0 = str(now.day + 1)
-if (now.month <= 9):
-    month0 = str(now.month)
-    month0 = ('0' + month0)
-if (now.day <= 9):
-    day0 = str(now.day)
-    day0 = ('0' + day0)
-
-datapogoda = (year0 + '-' + month0 + '-' + day0)
-
+one_days = timedelta(1)  # плюсует следущий день
+in_two_days = now + one_days
+datapogoda = in_two_days.strftime(
+    "%Y-%m-%d")  # .strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
+# bot.send_message(message.chat.id, datapogoda)
 s1 = requests.get('https://sinoptik.com.ru/погода-луцк/' + datapogoda)  # следущий день
 
 b = bs4.BeautifulSoup(s1.text, "html.parser")
@@ -132,12 +127,10 @@ answer2 += 'Утром :' + pogoda3 + ' ' + pogoda4 + "\n"
 
 answer2 += 'Днём :' + pogoda5 + ' ' + pogoda6 + "\n"
 
-answer2 += 'Вечер :' + pogoda7 + ' ' + pogoda8 + "\n"
+answer2 += 'Вечер :' + pogoda7 + ' ' + pogoda8 + "\n\n"
 
 p = b.select('.rSide .description')
 
 pogoda = p[0].getText()
 
-answer10 = pogoda.strip()
-
-
+answer2 += pogoda.strip()
