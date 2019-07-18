@@ -21,6 +21,7 @@ def send_welcom(message):
 def send_text(message):
     if message.text == "Погода на сегодня":
         bot.send_message(message.chat.id, lutsk.answer)
+        bot.send_message(message.chat.id, lutsk.datapogoda)
 
     elif message.text == "Погода на завтра":
         bot.send_message(message.chat.id, lutsk.answer2)
