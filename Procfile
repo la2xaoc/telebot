@@ -1,1 +1,1 @@
-worker: python sinoptik.py
+worker: python sinoptik.py $PORT
