@@ -28,7 +28,15 @@ def send_text(message):
 
 
 bot.polling(none_stop=True)
+updater.start_polling(clean=True)
 
+
+
+    # checking if before dyno restart there were running jobs
+check_ongoing_processes()
+
+    # handling dyno restart
+signal.signal(signal.SIGTERM, handle_dyno_restart)
 
     
     
