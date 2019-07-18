@@ -138,9 +138,7 @@ def main():
     pogoda = p[0].getText()
 
     answer2 += pogoda.strip()
-    
-    updater.start_polling(clean=True)
-    
+        
     
 if __name__ == '__main__':
     main()
