@@ -84,6 +84,8 @@ in_two_days = now + one_days
 datapogoda = in_two_days.strftime(
     "%Y-%m-%d")  # .strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
 #bot.send_message(message.chat.id, datapogoda)
+dataminuts= in_two_days.strftime(
+    "%Y-%m-%d %H:%M:%S")
 s1 = requests.get('https://sinoptik.com.ru/погода-луцк/' + datapogoda)  # следущий день
 
 b = bs4.BeautifulSoup(s1.text, "html.parser")
