@@ -365,12 +365,12 @@ def send_text(message):
     gorod = message.text
     if gorod != 'help':
         bot.send_message(message.chat.id, gorod)
-        bot.send_message(c.message.chat.id, today())
-        bot.send_message(c.message.chat.id, tomorrow())
+        bot.send_message(message.chat.id, today())
+        bot.send_message(message.chat.id, tomorrow())
     elif message.text == 'help':
         gorod = 'киев'
         bot.send_message(message.chat.id, 'Вводить можно русскими и украинскими буквами. Пример:')
-        bot.send_message(message.chat.id, 'киев', reply_markup=markup_tomorrow)
+        bot.send_message(message.chat.id, 'киев')
     else:
         bot.send_message(message.chat.id, 'Ошибка! Повторите...')
 
