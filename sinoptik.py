@@ -348,15 +348,15 @@ def send_welcom(message):
     bot.send_message(message.chat.id, help1, reply_markup=markup_menu)
 
 
-@bot.callback_query_handler(func=lambda c: True)
-def inlin(c):
-    if c.message:
-        if c.data == "today":
-            bot.send_message(c.message.chat.id, today())
-        elif c.data == "tomorrow":
-            bot.send_message(c.message.chat.id, tomorrow())
-        else:
-            bot.send_message(c.message.chat.id, 'Введите снова')
+#@bot.callback_query_handler(func=lambda c: True)
+#def inlin(c):
+    #if c.message:
+        #if c.data == "today":
+            #bot.send_message(c.message.chat.id, today())
+        #elif c.data == "tomorrow":
+            #bot.send_message(c.message.chat.id, tomorrow())
+        #else:
+            #bot.send_message(c.message.chat.id, 'Введите снова')
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
@@ -364,7 +364,9 @@ def send_text(message):
     global gorod
     gorod = message.text
     if gorod != 'help':
-        bot.send_message(message.chat.id, gorod, reply_markup=markup_tomorrow)
+        bot.send_message(message.chat.id, gorod)
+        bot.send_message(c.message.chat.id, today())
+        bot.send_message(c.message.chat.id, tomorrow())
     elif message.text == 'help':
         gorod = 'киев'
         bot.send_message(message.chat.id, 'Вводить можно русскими и украинскими буквами. Пример:')
