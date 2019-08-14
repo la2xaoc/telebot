@@ -329,13 +329,9 @@ def tomorrow():
 
             answer2 += pogoda.strip()
             return answer2
-            # bot.send_message(message.chat.id, answer2)
 
 
-markup_tomorrow = types.InlineKeyboardMarkup(row_width=2)  #инлайн кнопки
-button_1 = types.InlineKeyboardButton(text='Погода на сегодня', callback_data='today')
-button_2 = types.InlineKeyboardButton(text='Погода на завтра', callback_data='tomorrow')
-markup_tomorrow.add(button_1, button_2)
+
 
 
 gorod = ''
@@ -346,17 +342,6 @@ help1 = "Привет, я бот прогноза погоды!\n\nВводит�
 @bot.message_handler(commands=['start'])
 def send_welcom(message):
     bot.send_message(message.chat.id, help1, reply_markup=markup_menu)
-
-
-#@bot.callback_query_handler(func=lambda c: True)
-#def inlin(c):
-    #if c.message:
-        #if c.data == "today":
-            #bot.send_message(c.message.chat.id, today())
-        #elif c.data == "tomorrow":
-            #bot.send_message(c.message.chat.id, tomorrow())
-        #else:
-            #bot.send_message(c.message.chat.id, 'Введите снова')
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
