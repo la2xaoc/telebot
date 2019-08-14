@@ -108,8 +108,6 @@ def today():
             answer += ""
 
         return answer
-        # bot.send_message(call.message.chat.id, dataminuts)
-        # bot.send_message(call.message.chat.id, answer)
     else:
         s = requests.get('https://sinoptik.com.ru/погода-' + gorod)
         if s:
@@ -200,8 +198,7 @@ def today():
                 answer += ""
 
             return answer
-            # bot.send_message(call.message.chat.id, dataminuts)
-            # bot.send_message(call.message.chat.id, answer)
+
 
 
 def tomorrow():
@@ -332,8 +329,6 @@ def tomorrow():
 
 
 
-
-
 gorod = ''
 
 help1 = "Привет, я бот прогноза погоды!\n\nВводить можно русскими и украинскими буквами. Пример: \n Киев или киев"
@@ -358,5 +353,6 @@ def send_text(message):
         bot.send_message(message.chat.id, 'киев')
     else:
         bot.send_message(message.chat.id, 'Ошибка! Повторите...')
+
 
 bot.polling(none_stop=True)
