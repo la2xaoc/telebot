@@ -263,7 +263,7 @@ def tomorrow():
 
         answer2 += pogoda.strip()
         return answer2
-        #bot.send_message(message.chat.id, answer2)
+
     else:
         now = datetime.now()
         now = now + timedelta(hours=3)
@@ -325,6 +325,7 @@ def tomorrow():
             pogoda = p[0].getText()
 
             answer2 += pogoda.strip()
+
             return answer2
 
 
