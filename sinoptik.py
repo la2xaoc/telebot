@@ -212,7 +212,7 @@ def tomorrow():
     # bot.send_message(message.chat.id, datapogoda)
     dataminuts = in_two_days.strftime(
         "%Y-%m-%d %H:%M:%S")
-    s1 = requests.get('https://sinoptik.com.ru/погода-' + gorod + '/' + datapogoda)  # следущий день
+    s1 = requests.get('https://ua.sinoptik.ua/погода-' + gorod + '/' + datapogoda)  # следущий день
     if s1:
         b = bs4.BeautifulSoup(s1.text, "html.parser")
 
@@ -275,7 +275,7 @@ def tomorrow():
         # bot.send_message(message.chat.id, datapogoda)
         dataminuts = in_two_days.strftime(
             "%Y-%m-%d %H:%M:%S")
-        s1 = requests.get('https://sinoptik.com.ru/погода-' + gorod + '/' + datapogoda)  # следущий день
+        s1 = requests.get('https://ua.sinoptik.ua/погода-' + gorod + '/' + datapogoda)  # следущий день
         if s1:
             b = bs4.BeautifulSoup(s1.text, "html.parser")
 
