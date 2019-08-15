@@ -19,7 +19,7 @@ def keyboard():
 
 
 def today():
-    s = requests.get('https://sinoptik.com.ru/погода-' + gorod)
+    s = requests.get('https://ua.sinoptik.ua/погода-' + gorod)
     if s:
         b = bs4.BeautifulSoup(s.text, "html.parser")
 
@@ -109,7 +109,7 @@ def today():
 
         return answer
     else:
-        s = requests.get('https://sinoptik.com.ru/погода-' + gorod)
+        s = requests.get('https://ua.sinoptik.ua/погода-' + gorod)
         if s:
             b = bs4.BeautifulSoup(s.text, "html.parser")
 
