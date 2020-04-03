@@ -1461,9 +1461,10 @@ def send_sms():  # Отправа смс заказа надом в канал
         cursor = conn.cursor(buffered=True)
         cursor.execute("SELECT * FROM user")
         rows = cursor.fetchall()
-        i += 1
-        temp = i
+        i = 0
         for j in rows:
+            i += 1
+            temp = i            
             if '{user_id}'.format(user_id=user_id) == j[1]:
                 # print("ID: ", j[1])
                 # print("ID: ", j[2])
