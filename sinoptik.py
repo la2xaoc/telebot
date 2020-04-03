@@ -1,6 +1,6 @@
 import telebot
 from telebot import types
-#import requests
+import requests
 import requests, bs4
 #from bs4 import BeautifulSoup as bs
 from datetime import datetime, timedelta
