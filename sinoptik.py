@@ -103,7 +103,7 @@ help = "Привет, я бот прогноза погоды!\n\nВводить
 @bot.message_handler(commands=['start'])
 def first(message):
     proverka_user_id(message)
-    bot.send_message(message.chat.id, help, reply_markup=markup_menu)
+    bot.send_message(message.chat.id, help)
     if message.chat.id == admin_id(message):
         markup_menu = types.ReplyKeyboardMarkup(True, False)
         markup_menu.row('✔️Административная панель')
