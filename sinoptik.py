@@ -723,7 +723,7 @@ def today(message):
         daylink1 = daylink[0].getText()
 
         now = datetime.now()
-        now = now + timedelta(hours=0)
+        now = now + timedelta(hours=3)
 
         one_days = timedelta(0)  # плюсует следущий день
         in_two_days = now + one_days
