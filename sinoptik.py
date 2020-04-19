@@ -102,7 +102,10 @@ help = "Привет, я бот прогноза погоды!\n\nВводить
 
 @bot.message_handler(commands=['start'])
 def first(message):
+    global user_name
+    user_name = message.from_user.username
     proverka_user_id(message)
+    proverka_user_name(message)
     bot.send_message(message.chat.id, help)
     if message.chat.id == admin_id(message):
         markup_menu = types.ReplyKeyboardMarkup(True, False)
@@ -1444,7 +1447,8 @@ def proverka_user_id(message):
         user_id = message.from_user.id
         conn = mysql.connector.connect(user=user1, password=passwords1, host=host1, database=database1)
         cursor = conn.cursor(buffered=True)
-        cursor.execute("INSERT INTO user (IDIS) VALUES ('%s')" % (user_id))
+        #cursor.execute("INSERT INTO user (IDIS) VALUES ('%s')" % (user_id))
+        cursor.execute("INSERT INTO user (IDIS, Name) VALUES ('%s', '%s')" % (user_id, user_name))
         conn.commit()
     except mysql.connector.errors.IntegrityError:
         pass
@@ -1452,6 +1456,29 @@ def proverka_user_id(message):
         if (conn.is_connected()):
             conn.close()
             print("MySQL connection is closed")
+
+
+
+# Обновление Name в базу если поменялось имя
+def proverka_user_name(message):
+    try:
+        conn = mysql.connector.connect(user=user1, password=passwords1, host=host1, database=database1)
+        cursor = conn.cursor(buffered=True)
+        cursor.execute("SELECT * FROM user")
+        rows = cursor.fetchall()
+        for j in rows:
+            if '{user_id}'.format(user_id=user_id) == j[1]:
+                if '{user_name}'.format(user_name=user_name) != j[2]:
+                    cursor.execute("UPDATE user SET Name = '{user_name}' WHERE IDIS = '{user_id}'".format(user_id=user_id, user_name=user_name))
+                    conn.commit()
+                    print("Edit name")
+                elif '{user_name}'.format(user_name=user_name) == j[2]:
+                    print("Stabil name")
+    finally:
+        if (conn.is_connected()):
+            conn.close()
+            print("MySQL connection is closed")
+
 
 
 
