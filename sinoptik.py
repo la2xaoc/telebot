@@ -5,7 +5,8 @@ from datetime import datetime, timedelta
 import mysql.connector
 
 #bot = telebot.TeleBot("1009825598:AAFFhJy5gwamGCR5RZ3Nmpt5rGaQBAXxSuE") #@mecafetestbot
-bot = telebot.TeleBot("842277315:AAGYaZV9kRdrvGUdpVLmONUaT-qUYyJvB5o") #@leopogoda_bot
+#bot = telebot.TeleBot("842277315:AAGYaZV9kRdrvGUdpVLmONUaT-qUYyJvB5o") #@leopogoda_bot
+bot = telebot.TeleBot("739353306:AAG2h2KEOZA055STMLpOxhoCAYpYqQlWxHw")
 
 user_dict = {}
 
@@ -103,9 +104,12 @@ help = "Привет, я бот прогноза погоды!\n\nВводить
 @bot.message_handler(commands=['start'])
 def first(message):
     global user_name
+    global user_first_name
+    user_first_name = message.from_user.first_name
     user_name = message.from_user.username
     proverka_user_id(message)
     proverka_user_name(message)
+    proverka_user_first_name(message)
     bot.send_message(message.chat.id, help)
     if message.chat.id == admin_id(message):
         markup_menu = types.ReplyKeyboardMarkup(True, False)
@@ -173,51 +177,30 @@ def send_text(message):
         user_id = message.from_user.id
         send_sms()
     elif message.text == 'Ⓜ Главное меню':
-        first(message)
+        first1(message)
     else:
-        first(message)
+        first1(message)
 
-        # try:
-        #     markup_menu = types.ReplyKeyboardMarkup(True, False)
-        #     markup_menu.row('help')
-        #     bot.send_message(message.chat.id, 'Напишите город повторно:', reply_markup=markup_menu)
-        #     #send = bot.send_message(message.chat.id, 'Напишите город повторно:', reply_markup=markup_menu)
-        #     #bot.register_next_step_handler(send, send_text)
-        #     gorod = message.text
-        #     s1 = requests.get('https://sinoptik.ua/погода-' + gorod)
-        #     if s1:
-        #         b = bs4.BeautifulSoup(s1.text, "html.parser")
-        #         date = b.select('#bd1 .date')
-        #         date1 = date[0].getText()
-        #         date = b.select('#bd2 .date')
-        #         date2 = date[0].getText()
-        #         date = b.select('#bd3 .date')
-        #         date3 = date[0].getText()
-        #         date = b.select('#bd4 .date')
-        #         date4 = date[0].getText()
-        #         date = b.select('#bd5 .date')
-        #         date5 = date[0].getText()
-        #         date = b.select('#bd6 .date')
-        #         date6 = date[0].getText()
-        #         date = b.select('#bd7 .date')
-        #         date7 = date[0].getText()
-        #         markup_menu1 = types.ReplyKeyboardMarkup(True, False)
-        #         markup_menu1.row(date1, date2, date3, date4)
-        #         markup_menu1.row(date5, date6, date7)
-        #         markup_menu1.row('Ввести другой город')
-        #         if gorod != 'help':
-        #             chat_id = message.chat.id
-        #             gorod = message.text
-        #             user = User(gorod)
-        #             user_dict[chat_id] = user
-        #             bot.send_message(message.chat.id, str(user.gorod), reply_markup=markup_menu1)
-        #             # user.today = today(message)
-        #             send = bot.send_message(message.chat.id, 'Выберите день:', reply_markup=markup_menu1)
-        #             bot.register_next_step_handler(send, next1)
-        #     elif message.text == 'help':
-        #         bot.send_message(message.chat.id, help)
-        # except:
-        #     pass
+
+def first1(message):
+    global user_name
+    global user_first_name
+    user_first_name = message.from_user.first_name
+    user_name = message.from_user.username
+    proverka_user_id(message)
+    proverka_user_name(message)
+    proverka_user_first_name(message)
+    if message.chat.id == admin_id(message):
+        markup_menu = types.ReplyKeyboardMarkup(True, False)
+        markup_menu.row('✔️Административная панель')
+        markup_menu.row('help')
+        bot.send_message(message.chat.id, 'Напишите город', reply_markup=markup_menu)
+
+    else:
+        markup_menu = types.ReplyKeyboardMarkup(True, False)
+        markup_menu.row('help')
+        bot.send_message(message.chat.id, 'Напишите город', reply_markup=markup_menu)
+
 
 def admin_panel(message):
     if message.text == '✔️Административная панель':
@@ -234,13 +217,13 @@ def admin_panel(message):
         user_id = message.from_user.id
         send_sms()
     elif message.text == 'Ⓜ Главное меню':
-        first(message)
+        first1(message)
     else:
         admin_panel(message)
 
 def next1(message):
     if message.text == 'Ввести другой город':
-        first(message)
+        first1(message)
     elif message.text == date1:
         chat_id = message.chat.id
         user = user_dict[chat_id]
@@ -330,7 +313,7 @@ def next1(message):
 
 def next2(message):
     if message.text == 'Ввести другой город':
-        first(message)
+        first1(message)
     elif message.text == date1 or date2 or date3 or date4 or date5 or date6 or date7:
         next1(message)
 
@@ -1043,6 +1026,7 @@ def today3(message):
     # bot.send_message(message.chat.id, datapogoda)
     dataminuts = in_two_days.strftime(
         "%Y-%m-%d %H:%M:%S")
+    print(datapogoda)
     chat_id = message.chat.id
     user = user_dict[chat_id]
     s1 = requests.get('https://sinoptik.ua/погода-' + str(user.gorod) + '/' + datapogoda)  # следущий день
@@ -1119,6 +1103,7 @@ def today4(message):
 
     #one_days = timedelta(days=1)  # плюсует следущий день
    #in_two_days = now + timedelta(days=1)
+    #in_two_days = now.replace(day=int(now.day + 3))
     one_days = timedelta(3)  # плюсует следущий день
     in_two_days = now + one_days
     datapogoda = in_two_days.strftime(
@@ -1453,7 +1438,7 @@ def proverka_user_id(message):
         conn = mysql.connector.connect(user=user1, password=passwords1, host=host1, database=database1)
         cursor = conn.cursor(buffered=True)
         #cursor.execute("INSERT INTO user (IDIS) VALUES ('%s')" % (user_id))
-        cursor.execute("INSERT INTO user (IDIS, Name) VALUES ('%s', '%s')" % (user_id, user_name))
+        cursor.execute("INSERT INTO user (IDIS, Name, Firstname) VALUES ('%s', '%s', '%s')" % (user_id, user_name, user_first_name))
         conn.commit()
     except mysql.connector.errors.IntegrityError:
         pass
@@ -1486,6 +1471,28 @@ def proverka_user_name(message):
 
 
 
+# Обновление Firstname в базу если поменялось имя
+def proverka_user_first_name(message):
+    try:
+        conn = mysql.connector.connect(user=user1, password=passwords1, host=host1, database=database1)
+        cursor = conn.cursor(buffered=True)
+        cursor.execute("SELECT * FROM user")
+        rows = cursor.fetchall()
+        for j in rows:
+            if '{user_id}'.format(user_id=user_id) == j[1]:
+                if '{user_first_name}'.format(user_first_name=user_first_name) != j[10]:
+                    cursor.execute("UPDATE user SET Firstname = '{user_first_name}' WHERE IDIS = '{user_id}'".format(user_id=user_id, user_first_name=user_first_name))
+                    conn.commit()
+                    print("Edit name")
+                elif '{user_first_name}'.format(user_first_name=user_first_name) == j[10]:
+                    print("Stabil first_name")
+    finally:
+        if (conn.is_connected()):
+            conn.close()
+            print("MySQL connection is closed")
+
+
+
 
 def send_sms():  # Отправа смс заказа надом в канал
     try:
@@ -1496,7 +1503,7 @@ def send_sms():  # Отправа смс заказа надом в канал
         i = 0
         for j in rows:
             i += 1
-            temp = i            
+            temp = i
             if '{user_id}'.format(user_id=user_id) == j[1]:
                 # print("ID: ", j[1])
                 # print("ID: ", j[2])
@@ -1533,4 +1540,4 @@ def admin_id(message):
             conn.close()
 
 
-bot.polling(none_stop=True)
+bot.polling(none_stop=True, interval=0)
