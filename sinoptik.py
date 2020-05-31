@@ -5,8 +5,7 @@ from datetime import datetime, timedelta
 import mysql.connector
 
 #bot = telebot.TeleBot("1009825598:AAFFhJy5gwamGCR5RZ3Nmpt5rGaQBAXxSuE") #@mecafetestbot
-#bot = telebot.TeleBot("842277315:AAGYaZV9kRdrvGUdpVLmONUaT-qUYyJvB5o") #@leopogoda_bot
-bot = telebot.TeleBot("739353306:AAG2h2KEOZA055STMLpOxhoCAYpYqQlWxHw")
+bot = telebot.TeleBot("842277315:AAGYaZV9kRdrvGUdpVLmONUaT-qUYyJvB5o") #@leopogoda_bot
 
 user_dict = {}
 
