@@ -1036,7 +1036,8 @@ def today3(message):
 
     #one_days = timedelta(days=1)  # плюсует следущий день
    #in_two_days = now + timedelta(days=1)
-    in_two_days = now.replace(day=int(now.day + 2))
+    one_days = timedelta(2)  # плюсует следущий день
+    in_two_days = now + one_days
     datapogoda = in_two_days.strftime(
         "%Y-%m-%d")  # .strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
     # bot.send_message(message.chat.id, datapogoda)
@@ -1118,7 +1119,8 @@ def today4(message):
 
     #one_days = timedelta(days=1)  # плюсует следущий день
    #in_two_days = now + timedelta(days=1)
-    in_two_days = now.replace(day=int(now.day + 3))
+    one_days = timedelta(3)  # плюсует следущий день
+    in_two_days = now + one_days
     datapogoda = in_two_days.strftime(
         "%Y-%m-%d")  # .strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
     # bot.send_message(message.chat.id, datapogoda)
@@ -1200,7 +1202,8 @@ def today5(message):
 
     #one_days = timedelta(days=1)  # плюсует следущий день
    #in_two_days = now + timedelta(days=1)
-    in_two_days = now.replace(day=int(now.day + 4))
+    one_days = timedelta(4)  # плюсует следущий день
+    in_two_days = now + one_days
     datapogoda = in_two_days.strftime(
         "%Y-%m-%d")  # .strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
     # bot.send_message(message.chat.id, datapogoda)
@@ -1282,7 +1285,8 @@ def today6(message):
 
     #one_days = timedelta(days=1)  # плюсует следущий день
    #in_two_days = now + timedelta(days=1)
-    in_two_days = now.replace(day=int(now.day + 5))
+    one_days = timedelta(5)  # плюсует следущий день
+    in_two_days = now + one_days
     datapogoda = in_two_days.strftime(
         "%Y-%m-%d")  # .strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
     # bot.send_message(message.chat.id, datapogoda)
@@ -1364,7 +1368,8 @@ def today7(message):
 
     #one_days = timedelta(days=1)  # плюсует следущий день
    #in_two_days = now + timedelta(days=1)
-    in_two_days = now.replace(day=int(now.day + 6))
+    one_days = timedelta(6)  # плюсует следущий день
+    in_two_days = now + one_days
     datapogoda = in_two_days.strftime(
         "%Y-%m-%d")  # .strftime("%Y-%m-%d") задаает формат даты в сроку и дает ноль спереди
     # bot.send_message(message.chat.id, datapogoda)
